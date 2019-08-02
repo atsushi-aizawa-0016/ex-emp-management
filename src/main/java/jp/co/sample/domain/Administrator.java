@@ -1,13 +1,11 @@
 package jp.co.sample.domain;
 
-import org.springframework.stereotype.Repository;
 
 /**
  * 管理者情報を表すドメイン.
  * @author atsushi
  *
  */
-@Repository
 public class Administrator {
 
 	private Integer id;
