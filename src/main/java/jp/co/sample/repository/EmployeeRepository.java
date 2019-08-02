@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
- * 従業員一覧取得、主キーから従業員情報取得、従業員情報を変更するメソッドを定義したクラス.
+ * 従業員一覧取得、主キーから従業員情報取得、従業員情報を変更するメソッドを定義したクラス.(ダメな例)
+ * 
+ * Employeeテーブルを操作するリポジトリ.
  * 
  * @author atsushi
  *
@@ -58,7 +60,7 @@ public class EmployeeRepository {
 	/**
 	 * 主キーから従業員情報を取得する.
 	 * 
-	 * @param id 
+	 * @param id 主キー情報
 	 * @return 一人の従業員情報
 	 */
 	public Employee load(Integer id) {
@@ -68,18 +70,18 @@ public class EmployeeRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		
 		Employee employee = new Employee();
-		try {
+//		try {
 			employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
-		} catch (Exception e) {
-			System.out.println("例外が発生しました。");
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			System.out.println("例外が発生しました。");
+//			e.printStackTrace();
+//		}
 		return employee;
 	}
 	/**
 	 * 従業員情報を変更する.
 	 * 
-	 * @param employee
+	 * @param employee　変更する従業員情報
 	 */
 	public void update(Employee employee) {
 		String updateSql = "UPDATE employee SET dependentsCount=:dependentsCount WHERE id=:id";

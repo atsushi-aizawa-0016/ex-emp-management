@@ -13,7 +13,9 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
- * 管理者情報の挿入とメールアドレスとパスワードから管理者情報を取得するメソッドを定義したクラス.
+ * 管理者情報の挿入とメールアドレスとパスワードから管理者情報を取得するメソッドを定義したクラス.(ダメな例）
+ * 
+ * administratorsテーブルを操作するリポジトリ.
  * 
  * @author atsushi
  *
@@ -36,7 +38,7 @@ public class AdministratorRepository {
 	/**
 	 * 管理者情報を挿入する.
 	 * 
-	 * @param administrator 挿入したい行情報 
+	 * @param administrator 挿入したい管理者情報 
 	 */
 	public void insert(Administrator administrator) {
 		String insertSql = "INSERT INTO administrators (name,mail_address,password) "
@@ -50,9 +52,9 @@ public class AdministratorRepository {
 	/**
 	 * メールアドレスとパスワードから管理者情報を取得する.
 	 * 
-	 * @param mail_address
-	 * @param password
-	 * @return 一人の管理者情報
+	 * @param mail_address　メールアドレス情報
+	 * @param password パスワード情報
+	 * @return 管理者情報 (もし存在しなければnullが返る)
 	 */
 	public Administrator findByMailAddressAndPassword(String mail_address,String password) {
 		
