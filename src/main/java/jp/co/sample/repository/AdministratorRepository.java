@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
- * 管理者情報の挿入とメールアドレスとパスワードから管理者情報を取得するRepository.
+ * 管理者情報の挿入とメールアドレスとパスワードから管理者情報を取得するメソッドを定義したクラス.
  * 
  * @author atsushi
  *
