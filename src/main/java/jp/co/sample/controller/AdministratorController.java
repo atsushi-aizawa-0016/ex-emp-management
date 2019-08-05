@@ -27,11 +27,21 @@ public class AdministratorController {
 	@Autowired
 	private AdministratorService administratorService;
 
+	/**
+	 * 管理者パラメーターを受け取るフォーム.
+	 * 
+	 * @return 管理者パラメーター
+	 */
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministorForm() {
 		return new InsertAdministratorForm();
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
 		return new LoginForm();
@@ -95,6 +105,17 @@ public class AdministratorController {
 			session.setAttribute("administratorName", administrator.getName());
 			return "forward:/employee/showList";
 		}
+	}
+	
+	/**
+	 * ログアウトする.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }

@@ -45,10 +45,10 @@ public class EmployeeController {
 		return "employee/list";
 	}
 	/**
-	 * 取得した従業員情報を表示する.
+	 * 従業員情報詳細を表示する.
 	 * 
 	 * @param id 従業員ID
-	 * @param model
+	 * @param model　リクエストスコープ
 	 * @return 一人の従業員ページ
 	 */
 	@RequestMapping("/showDetail")
@@ -57,6 +57,12 @@ public class EmployeeController {
 		model.addAttribute("employee",employee);
 		return "employee/detail";
 	}
+	/**
+	 * 従業員情報の更新.
+	 * 
+	 * @param form　リクエストパラメーター情報
+	 * @return 従業員一覧
+	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
 		Employee employee = new Employee();
@@ -65,5 +71,4 @@ public class EmployeeController {
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
 	}
-	
 }
