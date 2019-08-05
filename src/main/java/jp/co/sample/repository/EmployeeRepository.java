@@ -32,14 +32,14 @@ public class EmployeeRepository {
 		employee.setName(rs.getString("name"));
 		employee.setImage(rs.getString("image"));
 		employee.setGender(rs.getString("gender"));
-		employee.setHireDate(rs.getDate("hireDate"));
-		employee.setMailAddress(rs.getString("mailAddress"));
-		employee.setZipCode(rs.getString("zipCode"));
-		employee.setAdderss(rs.getString("address"));
+		employee.setHireDate(rs.getDate("hire_date"));
+		employee.setMailAddress(rs.getString("mail_address"));
+		employee.setZipCode(rs.getString("zip_code"));
+		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
 		employee.setCharacteristics(rs.getString("characteristics"));
-		employee.setDependentsCount(rs.getInt("dependentsCount"));
+		employee.setDependentsCount(rs.getInt("dependents_count"));
 		return employee;
 	};
 	
@@ -49,8 +49,8 @@ public class EmployeeRepository {
 	 * @return 従業員一覧情報のリスト
 	 */
 	public List<Employee> findAll(){
-		String findSql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode,address,telephone,salary,characteristics,dependentsCount "
-					 + "FROM employees ORDER BY hireDate";
+		String findSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
+					 + "FROM employees ORDER BY hire_date";
 		
 		List<Employee> employeesList = template.query(findSql, EMPLOYEE_ROW_MAPPER);
 		
@@ -64,7 +64,7 @@ public class EmployeeRepository {
 	 * @return 一人の従業員情報
 	 */
 	public Employee load(Integer id) {
-		String loadSql = "SELECT id,name,image,gender,hireDate,mailAddress,zipCode,address,telephone,salary,characteristics,dependentsCount "
+		String loadSql = "SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
 						 + "FROM employees WHERE id=:id";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -84,7 +84,7 @@ public class EmployeeRepository {
 	 * @param employee　変更する従業員情報
 	 */
 	public void update(Employee employee) {
-		String updateSql = "UPDATE employee SET dependentsCount=:dependentsCount WHERE id=:id";
+		String updateSql = "UPDATE employee SET dependents_count=:dependentsCount WHERE id=:id";
 		
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		

@@ -26,30 +26,30 @@ public class AdministratorController {
 
 	@Autowired
 	private AdministratorService administratorService;
-	
+
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertAdministorForm() {
 		return new InsertAdministratorForm();
 	}
-	
+
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
-	
+
 	@Autowired
 	private HttpSession session;
-	
+
 	/**
 	 * 管理者情報登録画面にフォワードする.
 	 * 
-	 * @return　管理者情報登録画面
+	 * @return 管理者情報登録画面
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
 		return "administrator/insert";
 	}
-	
+
 	/**
 	 * 管理者情報を登録する.
 	 * 
@@ -59,14 +59,14 @@ public class AdministratorController {
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
 		Administrator administrator = new Administrator();
-		
+
 		BeanUtils.copyProperties(form, administrator);
-		
+
 		administratorService.insert(administrator);
-		
+
 		return "redirect:/";
 	}
-	
+
 	/**
 	 * ログイン画面表示
 	 * 
@@ -76,20 +76,25 @@ public class AdministratorController {
 	public String toLogin() {
 		return "administrator/login";
 	}
-	
+
+	/**
+	 * 管理者情報を
+	 * 
+	 * @param form
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/login")
-	public String login(LoginForm form,Model model) {
-		Administrator administrator = new Administrator();
-		administrator = administratorService.login(form.getMailAddress(), form.getPassword());
-		if(administrator == null) {
+	public String login(LoginForm form, Model model) {
+		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+		if (administrator == null) {
 			String err = "メールアドレスまたはパスワードが不正です。";
 			model.addAttribute("err", err);
 			return "administrator/login";
-		}else {
+		} else {
 			session.setAttribute("administratorName", administrator.getName());
 			return "forward:/employee/showList";
 		}
 	}
-	
-	
+
 }

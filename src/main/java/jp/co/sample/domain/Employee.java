@@ -25,7 +25,7 @@ public class Employee {
 	/** 郵便番号 */
 	private String zipCode;
 	/** 住所 */
-	private String adderss;
+	private String address;
 	/** 電話番号 */
 	private String telephone;
 	/** 給料 */
@@ -40,7 +40,7 @@ public class Employee {
 	}
 
 	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
-			String zipCode, String adderss, String telephone, Integer salary, String characteristics,
+			String zipCode, String address, String telephone, Integer salary, String characteristics,
 			Integer dependentsCount) {
 		super();
 		this.id = id;
@@ -50,7 +50,7 @@ public class Employee {
 		this.hireDate = hireDate;
 		this.mailAddress = mailAddress;
 		this.zipCode = zipCode;
-		this.adderss = adderss;
+		this.address = address;
 		this.telephone = telephone;
 		this.salary = salary;
 		this.characteristics = characteristics;
@@ -112,17 +112,16 @@ public class Employee {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-
-	public String getAdderss() {
-		return adderss;
-	}
-
-	public void setAdderss(String adderss) {
-		this.adderss = adderss;
-	}
-
+	
 	public String getTelephone() {
 		return telephone;
+	}
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void setTelephone(String telephone) {
@@ -156,7 +155,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
-				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", adderss=" + adderss
+				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
 				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
 				+ ", dependentsCount=" + dependentsCount + "]";
 	}

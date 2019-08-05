@@ -16,7 +16,31 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 	
+	/**
+	 * 従業員リスト取得.
+	 * 
+	 * @return 従業員リスト
+	 */
 	public List<Employee> showList(){
 		return employeeRepository.findAll();
+	}
+	
+	/**
+	 * 従業員情報を取得.
+	 * 
+	 * @param id 従業員ID
+	 * @return 従業員情報
+	 */
+	public Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
+	}
+	
+	/**
+	 * 従業員情報を更新.
+	 * 
+	 * @param employee 従業員情報
+	 */
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
 	}
 }
