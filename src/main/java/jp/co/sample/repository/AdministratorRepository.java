@@ -42,7 +42,7 @@ public class AdministratorRepository {
 	 */
 	public void insert(Administrator administrator) {
 		String insertSql = "INSERT INTO administrators (name,mail_address,password) "
-						   + "VALUES (:name,:mail_address,:password)";
+						   + "VALUES (:name,:mailAddress,:password)";
 		
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		
@@ -56,12 +56,12 @@ public class AdministratorRepository {
 	 * @param password パスワード情報
 	 * @return 管理者情報 (もし存在しなければnullが返る)
 	 */
-	public Administrator findByMailAddressAndPassword(String mail_address,String password) {
+	public Administrator findByMailAddressAndPassword(String mailAddress,String password) {
 		
 		String selectSql = "SELECT name,mail_address,password FROM administrators "
-						   + "WHERE mail_address=:mail_address AND password=:password";
+						   + "WHERE mail_address=:mailAddress AND password=:password";
 		
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mail_address", mail_address).addValue("password", password);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
 		
 		List<Administrator> administratorList = template.query(selectSql, param, ADMINISTRATOR_ROW_MAPPER);
 		if (administratorList.size() == 0) {
